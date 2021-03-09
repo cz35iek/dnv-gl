@@ -1,0 +1,37 @@
+﻿@model TimelineResponse
+@{
+    ViewData["Title"] = "Twitter Timeline";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.Data != null)
+{
+    <table style="width:100%">
+        <tr>
+            <th>#</th>
+            <th>Tweet</th>
+            <th>Created At</th>
+        </tr>
+        @foreach (var tweet in Model.Data)
+        {
+            <tr>
+                <td style="padding:0 10px 10px 0;">
+                    <a href="/tweets/@tweet.Id">view</a>
+                </td>
+                <td>@tweet.Text</td>
+                <td>@tweet.CreatedAt</td>
+            </tr>
+        }
+    </table>
+}
+<div style="padding-top: 10px;">
+    @if (!string.IsNullOrEmpty(Model.Meta.PreviousToken))
+    {
+        <a href="@Context.Request.Host@Context.Request.Path/@Model.Meta.PreviousToken"> &larr; previous page
+        </a>
+    }
+    @if (!string.IsNullOrEmpty(Model.Meta.NextToken))
+    {
+        <a href="@Context.Request.Host@Context.Request.Path@Model.Meta.NextToken"> next page &rarr;</a>
+    }
+</div>
