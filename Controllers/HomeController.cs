@@ -27,26 +27,6 @@ namespace InterviewTask.Controllers
             return View();
         }
 
-        public async Task<IActionResult> TwitterFeed()
-        {
-            var tweets = await _twitterApi.GetUserTimeline();
-
-            return View(tweets);
-        }
-
-        public async Task<IActionResult> Tweet(long id)
-        {
-            var tweet = await _twitterApi.GetTweet(id);
-
-            if (tweet != null)
-            {
-                return View(tweet);
-
-            }
-
-            return NotFound();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
