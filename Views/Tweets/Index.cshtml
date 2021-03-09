@@ -25,13 +25,13 @@
     </table>
 }
 <div style="padding-top: 10px;">
-    @if (!string.IsNullOrEmpty(Model.Meta.PreviousToken))
+    @if (!string.IsNullOrEmpty(Model.Meta?.PreviousToken))
     {
-        <a href="@Context.Request.Host@Context.Request.Path/@Model.Meta.PreviousToken"> &larr; previous page
+        <a href="?paginationToken=@Model.Meta.PreviousToken"> &larr; previous page
         </a>
     }
-    @if (!string.IsNullOrEmpty(Model.Meta.NextToken))
+    @if (!string.IsNullOrEmpty(Model.Meta?.NextToken))
     {
-        <a href="@Context.Request.Host@Context.Request.Path@Model.Meta.NextToken"> next page &rarr;</a>
+        <a href="?paginationToken=@Model.Meta.NextToken"> next page &rarr;</a>
     }
 </div>
